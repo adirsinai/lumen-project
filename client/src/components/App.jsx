@@ -36,6 +36,19 @@ const App = () => {
       });
   }, []);
 
+  const DateRow = (props) => {
+    return <td>{moment(props.d).format("MMM YYYY")}</td>;
+  };
+  const SubRow = (props) => {
+    return <td>{props.sub}</td>;
+  };
+  const ChangeMonth = (props) => {
+    return <td>{props.changeMonth + "%"}</td>;
+  };
+  const ChangeYear = (props) => {
+    return <td>{props.changeYear + "%"}</td>;
+  };
+
   return (
     <div className="app-container">
       <table>
@@ -45,28 +58,28 @@ const App = () => {
               <tr key={i}>
                 <th scope="row">Month</th>
                 {data.date.map((d) => (
-                  <td>{moment(d).format("MMM YYYY")}</td>
+                  <DateRow date={d} />
                 ))}
               </tr>
 
               <tr>
                 <th scope="row">New Subscriptions</th>
                 {data.subs.map((sub) => (
-                  <td>{sub}</td>
+                  <SubRow sub={sub} />
                 ))}
               </tr>
 
               <tr>
                 <th scope="row">Change from last month(%)</th>
                 {data.changeMonth.map((m) => (
-                  <td>{m + "%"}</td>
+                  <ChangeMonth changeMonth={m} />
                 ))}
               </tr>
 
               <tr>
                 <th scope="row">Change from last year (%)</th>
                 {data.changeYear.map((y) => (
-                  <td>{y + "%"}</td>
+                  <ChangeYear changeYear={y} />
                 ))}
               </tr>
             </>
